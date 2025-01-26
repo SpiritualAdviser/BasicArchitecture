@@ -3,4 +3,7 @@
     <string name="hello">Hello</string>
     <string name="next">NEXT</string>
     <string name="authorizationfragment">AuthorizationFragment</string>
+    <string name="interests">Interests</string>
+    <string name="person_profile">Person Profile</string>
+    <string name="address">Address</string>
 </resources>
