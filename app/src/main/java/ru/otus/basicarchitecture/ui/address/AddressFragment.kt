@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import ru.otus.basicarchitecture.R
 
 class AddressFragment : Fragment() {
@@ -27,5 +29,14 @@ class AddressFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_address, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val navController = findNavController()
+        view.findViewById<Button>(R.id.toInterests).setOnClickListener {
+            navController.navigate(R.id.action_to_interestsFragment)
+        }
     }
 }
