@@ -10,8 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
-
+@AndroidEntryPoint
 class PersonProfileFragment : Fragment() {
 
     companion object {

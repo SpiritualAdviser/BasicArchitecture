@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AuthorizationFragment : Fragment() {
 
     companion object {
