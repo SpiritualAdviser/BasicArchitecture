@@ -50,7 +50,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/surname"
+                android:id="@+id/surnamePerson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="surname Person"
@@ -64,7 +64,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/birthData"
+                android:id="@+id/birthDataPerson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="birthData"
@@ -77,7 +77,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/addressPerson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="adddrett"

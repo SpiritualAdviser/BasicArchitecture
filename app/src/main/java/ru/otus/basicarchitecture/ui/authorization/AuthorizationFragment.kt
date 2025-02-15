@@ -39,6 +39,7 @@ class AuthorizationFragment : Fragment() {
         val birthDataTextInput = view.findViewById<TextInputLayout>(R.id.birthData)
 
         val navController = findNavController()
+
         view.findViewById<Button>(R.id.toAddress).setOnClickListener {
 
             viewModel.setName(nameTextInput.editText?.text.toString())
