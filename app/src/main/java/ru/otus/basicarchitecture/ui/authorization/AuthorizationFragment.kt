@@ -34,20 +34,18 @@ class AuthorizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = findNavController()
-        view.findViewById<Button>(R.id.toAddress).setOnClickListener {
-            navController.navigate(R.id.action_to_addressFragment)
-        }
-
         val nameTextInput = view.findViewById<TextInputLayout>(R.id.nameTextInput)
         val surnameTextInput = view.findViewById<TextInputLayout>(R.id.surnameTextInput)
         val birthDataTextInput = view.findViewById<TextInputLayout>(R.id.birthData)
 
+        val navController = findNavController()
         view.findViewById<Button>(R.id.toAddress).setOnClickListener {
 
             viewModel.setName(nameTextInput.editText?.text.toString())
             viewModel.setSurname(surnameTextInput.editText?.text.toString())
             viewModel.setBirthDate(birthDataTextInput.editText?.text.toString())
+
+            navController.navigate(R.id.action_to_addressFragment)
         }
     }
 }

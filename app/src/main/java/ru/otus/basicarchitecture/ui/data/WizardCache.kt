@@ -1,6 +1,5 @@
 package ru.otus.basicarchitecture.ui.data
 
-import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
 class WizardCache @Inject constructor() {
@@ -8,4 +7,12 @@ class WizardCache @Inject constructor() {
     var personName: String = ""
     var personSurname: String = ""
     var personBirthDate: String = ""
+
+    var personCountry: String = ""
+    var personCity: String = ""
+    var personAddress: String = ""
+
+    var hobby_sports: String = ""
+    var hobby_сreative: String = ""
+    var hobby_intelligence: String = ""
 }
