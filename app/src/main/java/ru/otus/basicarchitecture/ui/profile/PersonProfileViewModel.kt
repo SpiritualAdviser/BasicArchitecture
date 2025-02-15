@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PersonProfileViewModel @Inject constructor(
-    private var wizardCache: WizardCache
+    wizardCache: WizardCache
 
 ) : ViewModel() {
 
@@ -20,6 +20,4 @@ class PersonProfileViewModel @Inject constructor(
     var personAddress: String = wizardCache.personAddress
 
     var hobby: MutableList<String> = wizardCache.hobby
-
-    // TODO: Implement the ViewModel
 }

@@ -8,11 +8,4 @@ import javax.inject.Inject
 @HiltAndroidApp
 class MyHilt : Application() {
 
-    @Inject
-    lateinit var wizardCache: WizardCache
-
-    override fun onCreate() {
-        super.onCreate()
-        wizardCache
-    }
 }

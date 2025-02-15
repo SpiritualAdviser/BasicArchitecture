@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
+
 @AndroidEntryPoint
 class AddressFragment : Fragment() {
 
@@ -19,12 +20,6 @@ class AddressFragment : Fragment() {
     }
 
     private val viewModel: AddressViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

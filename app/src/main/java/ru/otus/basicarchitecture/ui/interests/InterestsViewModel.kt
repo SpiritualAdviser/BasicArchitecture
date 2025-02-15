@@ -9,11 +9,16 @@ import javax.inject.Inject
 class InterestsViewModel @Inject constructor(
     var wizardCache: WizardCache
 ) : ViewModel() {
+
     fun addHobby(hobby: String) {
         wizardCache.hobby.add(hobby)
     }
 
     fun removeHobby(hobby: String) {
         wizardCache.hobby.remove(hobby)
+    }
+
+    fun onBack() {
+        wizardCache.hobby.clear()
     }
 }

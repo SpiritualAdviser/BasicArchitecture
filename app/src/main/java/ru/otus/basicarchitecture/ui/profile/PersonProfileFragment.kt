@@ -1,16 +1,15 @@
 package ru.otus.basicarchitecture.ui.profile
 
 import android.annotation.SuppressLint
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.helper.widget.Flow
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
 
@@ -23,12 +22,6 @@ class PersonProfileFragment : Fragment() {
 
     private val viewModel: PersonProfileViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,13 +29,13 @@ class PersonProfileFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_person_profile, container, false)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         updateProfile(view)
         setHobbyCards(view)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateProfile(view: View) {
         val nameTextView = view.findViewById<TextView>(R.id.namePerson)
         val surnameTextView = view.findViewById<TextView>(R.id.surnamePerson)

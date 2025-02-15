@@ -1,6 +1,5 @@
 package ru.otus.basicarchitecture.ui.interests
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,12 +30,6 @@ class InterestsFragment : Fragment() {
     }
 
     private val viewModel: InterestsViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +65,6 @@ class InterestsFragment : Fragment() {
             addToFlow(hobby, flow, container)
         }
     }
-
 
     private fun addToFlow(hobby: String, flow: Flow, container: ConstraintLayout) {
 
