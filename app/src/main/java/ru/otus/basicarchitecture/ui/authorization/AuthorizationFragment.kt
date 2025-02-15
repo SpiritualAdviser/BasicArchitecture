@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Spinner
 import androidx.navigation.fragment.findNavController
 import ru.otus.basicarchitecture.R
 
@@ -21,6 +22,7 @@ class AuthorizationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // TODO: Use the ViewModel
+
     }
 
     override fun onCreateView(
@@ -28,6 +30,7 @@ class AuthorizationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_authorization, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
