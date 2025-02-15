@@ -7,17 +7,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InterestsViewModel @Inject constructor(
-    private var wizardCache: WizardCache
+    var wizardCache: WizardCache
 ) : ViewModel() {
-    fun setSports(hobby: String) {
-        wizardCache.hobby_sports = hobby
+    fun addHobby(hobby: String) {
+        wizardCache.hobby.add(hobby)
     }
 
-    fun setCreative(hobby: String) {
-        wizardCache.hobby_сreative = hobby
-    }
-
-    fun setIntelligence(hobby: String) {
-        wizardCache.hobby_intelligence = hobby
+    fun removeHobby(hobby: String) {
+        wizardCache.hobby.remove(hobby)
     }
 }

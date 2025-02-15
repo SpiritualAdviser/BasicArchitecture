@@ -9,39 +9,6 @@
     <string name="name">name</string>
     <string name="data_of_birth">Data of Birth</string>
 
-
-    <string-array name="hobby_sports">
-        <item>нет</item>
-        <item>велосипед</item>
-        <item>бег</item>
-        <item>футбол</item>
-        <item>йога</item>
-        <item>теннис</item>
-        <item>сёрфинг</item>
-        <item>паркур</item>
-        <item>баскетбол</item>
-    </string-array>
-
-    <string-array name="hobby_сreative">
-        <item>нет</item>
-        <item>музыка</item>
-        <item>вокал</item>
-        <item>кулинария</item>
-        <item>батик</item>
-        <item>вышивка</item>
-        <item>рисование</item>
-        <item>фотография</item>
-    </string-array>
-
-    <string-array name="hobby_intelligence">
-        <item>нет</item>
-        <item>игры</item>
-        <item>головоломки</item>
-        <item>шахматы</item>
-        <item>чтение</item>
-        <item>наука</item>
-    </string-array>
-
 </resources>
 
 

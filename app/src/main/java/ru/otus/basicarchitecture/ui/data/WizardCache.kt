@@ -14,7 +14,5 @@ class WizardCache @Inject constructor() {
     var personCity: String = ""
     var personAddress: String = ""
 
-    var hobby_sports: String = ""
-    var hobby_сreative: String = ""
-    var hobby_intelligence: String = ""
+    var hobby: MutableList<String> = mutableListOf()
 }

@@ -1,21 +1,30 @@
 package ru.otus.basicarchitecture.ui.interests
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Spinner
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.helper.widget.Flow
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
+import ru.otus.basicarchitecture.ui.data.Hobby
+import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class InterestsFragment : Fragment() {
+
+    @Inject
+    lateinit var hobby: Hobby
 
     companion object {
         fun newInstance() = InterestsFragment()
@@ -44,77 +53,55 @@ class InterestsFragment : Fragment() {
 
             navController.navigate(R.id.action_to_personProfileFragment)
         }
-        setHobbySpinners()
+        setHobbyCards(view)
     }
 
-    private fun setHobbySpinners() {
-        view?.let { viewNotNull ->
+    private fun setHobbyCards(view: View) {
 
-            val spinnerSports = viewNotNull.findViewById<Spinner>(R.id.hobby_sports)
-            val spinnerCreative = viewNotNull.findViewById<Spinner>(R.id.hobby_сreative)
-            val spinnerIntelligence = viewNotNull.findViewById<Spinner>(R.id.hobby_intelligence)
+        val flow = view.findViewById<Flow>(R.id.hobby_flow)
+        val container = view.findViewById<ConstraintLayout>(R.id.interestsConstraintLayout)
 
-            context?.let {
-                spinnerSports.adapter = ArrayAdapter.createFromResource(
-                    it,
-                    R.array.hobby_sports,
-                    android.R.layout.simple_spinner_dropdown_item
-                )
+        hobby.hobby_sports.forEach { hobby ->
+            addToFlow(hobby, flow, container)
+        }
 
-                spinnerCreative.adapter = ArrayAdapter.createFromResource(
-                    it,
-                    R.array.hobby_сreative,
-                    android.R.layout.simple_spinner_dropdown_item
-                )
+        hobby.hobby_сreative.forEach { hobby ->
+            addToFlow(hobby, flow, container)
+        }
+        hobby.hobby_intelligence.forEach { hobby ->
+            addToFlow(hobby, flow, container)
+        }
+    }
 
-                spinnerIntelligence.adapter = ArrayAdapter.createFromResource(
-                    it,
-                    R.array.hobby_intelligence,
-                    android.R.layout.simple_spinner_dropdown_item
-                )
-            }
 
-            spinnerSports?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
+    private fun addToFlow(hobby: String, flow: Flow, container: ConstraintLayout) {
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.setSports(spinnerSports.selectedItem.toString())
-                }
-            }
+        val card = LayoutInflater.from(context).inflate(R.layout.card, container, false)
+        card.id = View.generateViewId()
+        card.setOnClickListener {
+            onCardHobbyClick(it.id)
+        }
+        container.addView(card)
+        card.findViewById<TextView>(R.id.textHobby).text = hobby
+        flow.addView(card)
+    }
 
-            spinnerCreative?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
+    private fun onCardHobbyClick(id: Int) {
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.setSports(spinnerCreative.selectedItem.toString())
-                }
-            }
+        val selectedColor = context?.let { ContextCompat.getColor(it, R.color.cardSelected) };
+        val defaultColor = context?.let { ContextCompat.getColor(it, R.color.card) };
+        val card = view?.findViewById<CardView>(id)
 
-            spinnerIntelligence?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
+        if (defaultColor != null && selectedColor != null && card != null) {
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.setSports(spinnerIntelligence.selectedItem.toString())
-                }
+            if (card.cardBackgroundColor.defaultColor == selectedColor) {
+                viewModel.removeHobby(card.findViewById<TextView>(R.id.textHobby).text.toString())
+                card.setCardBackgroundColor(defaultColor)
+            } else {
+                viewModel.addHobby(card.findViewById<TextView>(R.id.textHobby).text.toString())
+                card.setCardBackgroundColor(selectedColor)
             }
         }
     }
 }
+

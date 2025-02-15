@@ -19,9 +19,7 @@ class PersonProfileViewModel @Inject constructor(
     var personCity: String = wizardCache.personCity
     var personAddress: String = wizardCache.personAddress
 
-    var hobby_sports: String = wizardCache.hobby_sports
-    var hobby_сreative: String = wizardCache.hobby_сreative
-    var hobby_intelligence: String = wizardCache.hobby_intelligence
+    var hobby: MutableList<String> = wizardCache.hobby
 
     // TODO: Implement the ViewModel
 }

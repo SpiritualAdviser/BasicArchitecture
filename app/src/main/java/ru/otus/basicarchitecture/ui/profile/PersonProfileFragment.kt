@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.navigation.fragment.findNavController
+import androidx.constraintlayout.helper.widget.Flow
+import androidx.constraintlayout.widget.ConstraintLayout
 import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
+
 @AndroidEntryPoint
 class PersonProfileFragment : Fragment() {
 
@@ -37,12 +39,15 @@ class PersonProfileFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateProfile(view)
+        setHobbyCards(view)
+    }
 
+    private fun updateProfile(view: View) {
         val nameTextView = view.findViewById<TextView>(R.id.namePerson)
         val surnameTextView = view.findViewById<TextView>(R.id.surnamePerson)
         val birthDateTextView = view.findViewById<TextView>(R.id.birthDataPerson)
         val countryTextView = view.findViewById<TextView>(R.id.addressPerson)
-        val interestsTextView = view.findViewById<TextView>(R.id.interests)
 
         nameTextView.text = viewModel.personName
         surnameTextView.text = viewModel.personSurname
@@ -50,4 +55,21 @@ class PersonProfileFragment : Fragment() {
         countryTextView.text =
             "${viewModel.personCountry}, ${viewModel.personCity}, ${viewModel.personAddress}"
     }
+
+    private fun setHobbyCards(view: View) {
+
+        val flow = view.findViewById<Flow>(R.id.hobby_flow_on_profile)
+        val container = view.findViewById<ConstraintLayout>(R.id.interestsConstraintLayout)
+
+        viewModel.hobby.forEach { hobby ->
+
+            val card = LayoutInflater.from(context).inflate(R.layout.card, container, false)
+            card.id = View.generateViewId()
+            container.addView(card)
+            card.findViewById<TextView>(R.id.textHobby).text = hobby
+            flow.addView(card)
+        }
+    }
 }
+
+
