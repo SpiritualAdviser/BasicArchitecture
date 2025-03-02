@@ -10,6 +10,7 @@ class AddressViewModel @Inject constructor(
     private var wizardCache: WizardCache
 
 ) : ViewModel() {
+
     fun setCountry(country: String) {
         wizardCache.personCountry = country
     }
