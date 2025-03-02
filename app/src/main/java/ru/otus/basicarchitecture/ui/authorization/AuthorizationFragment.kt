@@ -78,15 +78,18 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun anAdultObserve(toAddress: Button) {
-        viewModel.anAdult.observe(viewLifecycleOwner) {
-            if (!it) {
-                Toast.makeText(
-                    requireActivity(),
-                    "You must be over 18 ears",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            toAddress.isEnabled = it
-        }
+
+//        viewModel.anAdult.observe(viewLifecycleOwner) {
+//            if (!it) {
+//                Toast.makeText(
+//                    requireActivity(),
+//                    "You must be over 18 ears",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//            toAddress.isEnabled = it
+//        }
+
+        toAddress.isEnabled = true
     }
 }
