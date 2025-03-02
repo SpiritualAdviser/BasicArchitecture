@@ -12,10 +12,9 @@ interface AddressIP {
 
     @POST("suggestions/api/4_1/rs/suggest/address")
     suspend fun postData(
-
         @Header("Content-Type") json: String = "application/json",
         @Header("Accept") jsons: String = "application/json",
-        @Header("Authorization") apiKey: String = BuildConfig.apiKey,
+        @Header("Authorization") apiKey: String = "Token ${BuildConfig.apiKey}" ,
         @Body dataModal: AddressData
     ): Response<ResponseData>
 }
