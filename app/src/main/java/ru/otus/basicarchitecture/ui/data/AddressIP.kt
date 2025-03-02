@@ -1,6 +1,5 @@
 package ru.otus.basicarchitecture.ui.data
 
-import okhttp3.Interceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,8 +12,6 @@ interface AddressIP {
 
     @POST("address")
     suspend fun postData(
-//        @Header("Content-Type") json: String = "application/json",
-//        @Header("Accept") jsons: String = "application/json",
         @Header("Authorization") apiKey: String = "Token ${BuildConfig.apiKey}" ,
         @Body dataModal: AddressData
     ): Response<ResponseData>

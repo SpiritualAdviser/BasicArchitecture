@@ -8,10 +8,10 @@ class AddressData @Inject constructor() {
     var query: String = ""
 }
 
-class ResponseData() {
+class ResponseData {
     var suggestions: List<SingleAddress> = listOf()
 }
 
-class SingleAddress() {
+class SingleAddress {
     var value: String = ""
 }

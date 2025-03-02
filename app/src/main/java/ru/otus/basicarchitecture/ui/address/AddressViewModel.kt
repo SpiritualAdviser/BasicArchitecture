@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import ru.otus.basicarchitecture.ui.data.AddressData
 import ru.otus.basicarchitecture.ui.data.AddressIP
@@ -15,19 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class AddressViewModel @Inject constructor(
     private var wizardCache: WizardCache,
-    private var addressData: AddressData
+    private var addressData: AddressData,
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     private val apiService = RetrofitClient.getClient().create(AddressIP::class.java)
-
-    fun setCountry(country: String) {
-        wizardCache.personCountry = country
-    }
-
-    fun setCity(city: String) {
-        wizardCache.personCity = city
-    }
+    var addressDataArray: MutableList<String> = mutableListOf()
+    private var postDataJob: Job? = null
 
     fun setAddress(address: String) {
         wizardCache.personAddress = address
@@ -35,8 +30,9 @@ class AddressViewModel @Inject constructor(
 
     fun getDataNotice(address: String) {
         addressData.query = address
+        postDataJob?.cancel()
 
-        viewModelScope.launch(Dispatchers.IO) {
+        postDataJob = viewModelScope.launch(Dispatchers.IO) {
 
             try {
                 val result = apiService.postData(
@@ -44,16 +40,14 @@ class AddressViewModel @Inject constructor(
                 )
                 if (result.isSuccessful) {
                     result.body()?.let {
-                        it.suggestions
-                        println()
+                        it.suggestions.forEach { address ->
+                            addressDataArray.add(address.value)
+                        }
                     }
-
-                    println()
                 }
 
             } catch (e: Exception) {
                 Log.d("my", e.toString())
-                println()
             }
         }
     }
