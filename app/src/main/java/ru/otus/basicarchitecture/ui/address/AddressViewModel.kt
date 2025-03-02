@@ -34,7 +34,7 @@ class AddressViewModel @Inject constructor(
     }
 
     fun getDataNotice(address: String) {
-        addressData.personAddress = address
+        addressData.query = address
 
         viewModelScope.launch(Dispatchers.IO) {
 

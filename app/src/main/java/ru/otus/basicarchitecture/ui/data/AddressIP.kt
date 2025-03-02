@@ -1,5 +1,6 @@
 package ru.otus.basicarchitecture.ui.data
 
+import okhttp3.Interceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,10 +11,10 @@ import ru.otus.basicarchitecture.BuildConfig
 
 interface AddressIP {
 
-    @POST("suggestions/api/4_1/rs/suggest/address")
+    @POST("address")
     suspend fun postData(
-        @Header("Content-Type") json: String = "application/json",
-        @Header("Accept") jsons: String = "application/json",
+//        @Header("Content-Type") json: String = "application/json",
+//        @Header("Accept") jsons: String = "application/json",
         @Header("Authorization") apiKey: String = "Token ${BuildConfig.apiKey}" ,
         @Body dataModal: AddressData
     ): Response<ResponseData>
@@ -22,7 +23,7 @@ interface AddressIP {
 object RetrofitClient {
     private var retrofit: Retrofit? = null
 
-    private const val baseUrl = "https://suggestions.dadata.ru/"
+    private const val baseUrl = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/"
 
     fun getClient(): Retrofit {
         if (retrofit == null) {

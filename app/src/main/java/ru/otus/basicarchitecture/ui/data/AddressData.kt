@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AddressData @Inject constructor() {
-    var personAddress: String = ""
+    var query: String = ""
 }
 
 class ResponseData() {
