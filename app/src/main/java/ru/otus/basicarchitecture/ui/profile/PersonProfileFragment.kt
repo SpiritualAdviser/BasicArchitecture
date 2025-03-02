@@ -45,8 +45,7 @@ class PersonProfileFragment : Fragment() {
         nameTextView.text = viewModel.personName
         surnameTextView.text = viewModel.personSurname
         birthDateTextView.text = viewModel.personBirthDate
-        countryTextView.text =
-            "${viewModel.personCountry}, ${viewModel.personCity}, ${viewModel.personAddress}"
+        countryTextView.text = viewModel.personAddress
     }
 
     private fun setHobbyCards(view: View) {

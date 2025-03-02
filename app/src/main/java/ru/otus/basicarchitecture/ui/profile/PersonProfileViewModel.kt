@@ -15,8 +15,8 @@ class PersonProfileViewModel @Inject constructor(
     var personSurname: String = wizardCache.personSurname
     var personBirthDate: String = wizardCache.personBirthDate
 
-    var personCountry: String = wizardCache.personCountry
-    var personCity: String = wizardCache.personCity
+//    var personCountry: String = wizardCache.personCountry
+//    var personCity: String = wizardCache.personCity
     var personAddress: String = wizardCache.personAddress
 
     var hobby: MutableList<String> = wizardCache.hobby
