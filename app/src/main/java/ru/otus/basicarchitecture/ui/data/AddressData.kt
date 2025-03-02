@@ -7,3 +7,11 @@ import javax.inject.Singleton
 class AddressData @Inject constructor() {
     var personAddress: String = ""
 }
+
+class ResponseData() {
+    var suggestions: List<SingleAddress> = listOf()
+}
+
+class SingleAddress() {
+    var value: String = ""
+}

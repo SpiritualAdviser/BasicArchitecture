@@ -1,5 +1,6 @@
 package ru.otus.basicarchitecture.ui.address
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,10 +43,16 @@ class AddressViewModel @Inject constructor(
                     dataModal = addressData
                 )
                 if (result.isSuccessful) {
+                    result.body()?.let {
+                        it.suggestions
+                        println()
+                    }
+
                     println()
                 }
 
             } catch (e: Exception) {
+                Log.d("my", e.toString())
                 println()
             }
         }
