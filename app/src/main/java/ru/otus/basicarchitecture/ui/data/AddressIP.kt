@@ -20,13 +20,14 @@ interface AddressIP {
 
 class RetrofitClient @Inject constructor() {
 
-    var apiService: AddressIP = getClient().create(AddressIP::class.java)
-
     private var retrofit: Retrofit? = null
 
     var baseUrl = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/"
 
+    var apiService: AddressIP = getClient().create(AddressIP::class.java)
+
     private fun getClient(): Retrofit {
+
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)

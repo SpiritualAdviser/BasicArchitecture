@@ -9,7 +9,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.anyString
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,14 +21,16 @@ import ru.otus.basicarchitecture.ui.data.WizardCache
 class AddressViewModelTest {
     private lateinit var server: MockWebServer
     private lateinit var viewModel: AddressViewModel
-
-    private var retrofitClient: RetrofitClient = RetrofitClient()
+    private lateinit var retrofitClient: RetrofitClient
 
     @Before
     fun set() {
         server = MockWebServer()
         val wizardCache = WizardCache()
         val addressData = AddressData()
+
+        retrofitClient = RetrofitClient()
+
 
         retrofitClient.apiService = Retrofit.Builder()
             .baseUrl(server.url("/"))
@@ -38,7 +39,6 @@ class AddressViewModelTest {
             .create(AddressIP::class.java)
 
         viewModel = AddressViewModel(wizardCache, addressData, retrofitClient)
-        server.start()
     }
 
     @Test
@@ -58,8 +58,11 @@ class AddressViewModelTest {
             """.trimIndent()
             )
             server.enqueue(response)
+            viewModel.getDataNotice(anyString())
 
-            verify(viewModel.getDataNotice(anyString()))
+            val result = viewModel.addressDataArray.isEmpty()
+            val exceptedValue = true
+            assertEquals(exceptedValue, result)
         }
     }
 
