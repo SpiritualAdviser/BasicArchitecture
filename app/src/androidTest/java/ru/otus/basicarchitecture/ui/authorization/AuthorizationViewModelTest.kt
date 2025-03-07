@@ -42,7 +42,6 @@ class AuthorizationViewModelTest {
 
                 val exceptedValue = true
                 assertEquals(exceptedValue, result)
-
             }
         }
     }
