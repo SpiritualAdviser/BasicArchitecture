@@ -15,12 +15,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddressViewModel @Inject constructor(
-    private var wizardCache: WizardCache,
+    var wizardCache: WizardCache,
     private var addressData: AddressData,
+    private var retrofitClient:RetrofitClient
 
     ) : ViewModel() {
 
-    private val apiService = RetrofitClient.getClient().create(AddressIP::class.java)
     var addressDataArray: MutableList<String> = mutableListOf()
     private var postDataJob: Job? = null
 
@@ -35,7 +35,7 @@ class AddressViewModel @Inject constructor(
         postDataJob = viewModelScope.launch(Dispatchers.IO) {
 
             try {
-                val result = apiService.postData(
+                val result = retrofitClient.apiService.postData(
                     dataModal = addressData
                 )
                 if (result.isSuccessful) {

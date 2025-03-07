@@ -7,22 +7,26 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
 import ru.otus.basicarchitecture.BuildConfig
+import javax.inject.Inject
 
 interface AddressIP {
 
     @POST("address")
     suspend fun postData(
-        @Header("Authorization") apiKey: String = "Token ${BuildConfig.apiKey}" ,
+        @Header("Authorization") apiKey: String = "Token ${BuildConfig.apiKey}",
         @Body dataModal: AddressData
     ): Response<ResponseData>
 }
 
-object RetrofitClient {
+class RetrofitClient @Inject constructor() {
+
+    var apiService: AddressIP = getClient().create(AddressIP::class.java)
+
     private var retrofit: Retrofit? = null
 
-    private const val baseUrl = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/"
+    var baseUrl = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/"
 
-    fun getClient(): Retrofit {
+    private fun getClient(): Retrofit {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
