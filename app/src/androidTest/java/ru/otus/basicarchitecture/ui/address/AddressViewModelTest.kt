@@ -28,9 +28,7 @@ class AddressViewModelTest {
         server = MockWebServer()
         val wizardCache = WizardCache()
         val addressData = AddressData()
-
         retrofitClient = RetrofitClient()
-
 
         retrofitClient.apiService = Retrofit.Builder()
             .baseUrl(server.url("/"))

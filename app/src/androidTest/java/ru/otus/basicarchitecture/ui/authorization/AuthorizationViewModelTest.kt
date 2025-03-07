@@ -1,17 +1,13 @@
 package ru.otus.basicarchitecture.ui.authorization
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.TestCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
-
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.otus.basicarchitecture.ui.address.AddressViewModel
-import ru.otus.basicarchitecture.ui.data.AddressData
 import ru.otus.basicarchitecture.ui.data.WizardCache
 
 @RunWith(AndroidJUnit4::class)
@@ -23,7 +19,6 @@ class AuthorizationViewModelTest {
     fun set() {
         val wizardCache = WizardCache()
         viewModel = AuthorizationViewModel(wizardCache)
-
         viewModel.setCurrentDate(1, 1, 2018)
     }
 
